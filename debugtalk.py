@@ -25,6 +25,7 @@ def get_httprunner_version():
     """
     return __version__
 
+
 # 获取毫秒时间戳
 def get_time_key():
     """
@@ -32,6 +33,7 @@ def get_time_key():
     """
     t = time.time()
     return int(round(t * 1000))
+
 
 # 保存response对象
 def save_resp(response):
@@ -44,6 +46,7 @@ def save_resp(response):
         raise ValueError
     else:
         resplist.append(response)
+
 
 # 根据jmespath表达式获取值
 def get_resp_list_value(jmse_search_value,resp_key):
@@ -63,9 +66,11 @@ def get_resp_list_value(jmse_search_value,resp_key):
     jmse_data = search(jmse_search_value, resp_data)
     return search(jmse_search_value, resp_data)
 
+
 # 清空resplit
 def remove_resp_list():
     resplist[:] = []
+
 
 # 获取活体图片
 def setup_hook_get_base64():
@@ -80,12 +85,15 @@ def setup_hook_get_base64():
         base_data = str(data).split("'")[1]
         return base_data
 
+
 # 更新活体上传参数
 def setup_hook_update_request(req):
     req["req_json"]["attachmentInfos"][0].pop("previewUrl")
 
+
 def get_methods(self):
     return (list(filter(lambda m: not m.startswith("_") and callable(getattr(self, m)),dir(self))))
+
 
 def call_assert(assert_enum):
     """
@@ -101,6 +109,7 @@ def call_assert(assert_enum):
         check_value = v[0]
         expect_value = v[1]
         resp_assert(assert_func_method, check_value, expect_value)
+
 
 # 自定义系统断言["success","errorMsg']
 def resp_assert(assertType, check_value, expect_value):
@@ -132,6 +141,7 @@ def resp_assert(assertType, check_value, expect_value):
     else:
         raise TypeError["assertion type must be a string"]
 
+
 def getValue(data, key):
     """
     读取传入的字典、列表的对应key的值
@@ -145,6 +155,7 @@ def getValue(data, key):
         return data[int(key)]
     else:
         pass
+
 
 # 初始化数据库连接
 def mysql_conn():
